@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:tabuada/pergunta.dart';
-import 'package:tabuada/questoes.dart';
+import 'package:flutter_application_2/questoes.dart';
+
+import 'botao_resposta.dart';
 
 class Janela2 extends StatelessWidget {
+  // Alterado para receber o índice da pergunta e a função de resposta
   const Janela2({
     super.key,
+    required this.perguntaSelecionada,
+    required this.quandoResponder,
   });
+
+  final int perguntaSelecionada;
+  final void Function(int) quandoResponder;
 
   @override
   Widget build(BuildContext context) {
-    Pergunta teste1 = questoes[2];
+    var teste1 = questoes[perguntaSelecionada];
+
     return Scaffold(
       body: Column(
         children: [
@@ -19,7 +27,6 @@ class Janela2 extends StatelessWidget {
               opacity: 0.8,
               child: Image.asset(
                 'assets/imagens/palhaco_ouve.png',
-                //color: const Color.fromARGB(40, 244, 67, 54),
               ),
             ),
           ),
@@ -27,34 +34,18 @@ class Janela2 extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text(teste1.respostas[0]),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text(teste1.respostas[1]),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text(teste1.respostas[2]),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text(teste1.respostas[3]),
-          ),
-          SizedBox(
-            height: 10,
-          ),
+          ...teste1.Embaralha().map((item) {
+            return BotaoReposta(
+              cor: const Color.fromARGB(255, 224, 55, 47),
+              callResposta: () {
+                print('Acertou!');
+                print('Item: $item');
+
+                quandoResponder(perguntaSelecionada);
+              },
+              textoResposta: item,
+            );
+          }),
         ],
       ),
     );

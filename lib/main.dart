@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:tabuada/janela1.dart';
-import 'package:tabuada/janela2.dart';
+import 'package:flutter_application_2/questoes.dart';
+
+import 'janela1.dart';
+import 'janela2.dart';
 
 void main() {
   runApp(
-    Controle(),
+    const Controle(),
   );
 }
 
@@ -16,28 +18,39 @@ class Controle extends StatefulWidget {
 }
 
 class _ControleState extends State<Controle> {
-  // Widget? atual;
-  String atual = 'um';
+  var controle = 0;
 
-  // criação de muda
   void muda() {
     setState(() {
-      atual = 'dois';
+      controle = 1;
+    });
+  }
+
+  void responder(int numero) {
+    setState(() {
+      controle++;
+
+      if (controle > questoes.length) {
+        controle = 0;
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget? usar;
+    Widget atual;
 
-    if (atual == 'um') {
-      usar = Janela1(muda);
+    if (controle == 0) {
+      atual = Janela1(muda);
     } else {
-      usar = Janela2();
+      atual = Janela2(
+        perguntaSelecionada: controle - 1,
+        quandoResponder: responder,
+      );
     }
 
     return MaterialApp(
-      home: usar,
+      home: atual,
     );
   }
 }

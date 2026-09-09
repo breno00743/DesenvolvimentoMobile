@@ -1,9 +1,24 @@
-import 'package:tabuada/pergunta.dart';
+import 'pergunta.dart';
 
 const questoes = [
-  Pergunta('Qual formula da agua', ['h20', 'h200', '3ee', 'p22']),
-  Pergunta('Qual capital do Brasil',
-      ['Barretos', 'Sao Paulo', 'Rio de Janeiro', 'Brasilia']),
-  Pergunta('Qual presidente atual do Brasil',
-      ['Lula', 'Bolsonaro', 'Dilma', 'Renan Santos'])
+  Pergunta(
+    'Qual é a cor do cavalo branco de Napoleão?',
+    ['Branco', 'Preto', 'Marrom', 'Cinza'],
+  ),
+  Pergunta(
+    'Qual é o animal que mia?',
+    ['Gato', 'Cachorro', 'Pato', 'Vaca'],
+  ),
+  Pergunta(
+    'Quantos dias tem uma semana?',
+    ['7', '5', '6', '8'],
+  ),
+  Pergunta(
+    'Qual é o maior planeta do Sistema Solar?',
+    ['Júpiter', 'Saturno', 'Terra', 'Marte'],
+  ),
+  Pergunta(
+    'Qual elemento químico tem o símbolo H?',
+    ['Hidrogênio', 'Hélio', 'Hafnium', 'Holmésio'],
+  ),
 ];
